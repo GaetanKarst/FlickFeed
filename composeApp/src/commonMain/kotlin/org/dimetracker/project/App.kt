@@ -15,6 +15,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import dailypulse.composeapp.generated.resources.Res
 import dailypulse.composeapp.generated.resources.compose_multiplatform
+import org.dimetracker.project.screens.AboutScreen
 
 @Composable
 @Preview
