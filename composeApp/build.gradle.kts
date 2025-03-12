@@ -48,6 +48,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(projects.shared)
             implementation(compose.material3)
+            implementation(libs.ui)
         }
     }
 }

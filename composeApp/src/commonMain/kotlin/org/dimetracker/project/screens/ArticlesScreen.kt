@@ -119,17 +119,7 @@ fun ArticleItemView(article: Article) {
 }
 
 @Composable
-fun Loader() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        CircularProgressIndicator(
-            modifier = Modifier.width(64.dp),
-            color = MaterialTheme.colors.onBackground
-        )
-    }
-}
+expect fun Loader()
 
 @Composable
 fun ErrorMessage(message: String) {
