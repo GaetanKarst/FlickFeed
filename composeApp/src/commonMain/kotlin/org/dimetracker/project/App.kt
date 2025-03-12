@@ -15,13 +15,17 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import dailypulse.composeapp.generated.resources.Res
 import dailypulse.composeapp.generated.resources.compose_multiplatform
+import org.dimetracker.project.articles.ArticlesViewModel
 import org.dimetracker.project.screens.AboutScreen
+import org.dimetracker.project.screens.ArticlesScreen
 
 @Composable
 @Preview
 fun App() {
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
+        val articleViewModel = ArticlesViewModel()
+
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             Button(onClick = { showContent = !showContent }) {
                 Text("Click me!")
@@ -30,7 +34,7 @@ fun App() {
 //                val greeting = remember { "hello" }
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                     Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    AboutScreen()
+                    ArticlesScreen(articleViewModel)
                 }
             }
         }

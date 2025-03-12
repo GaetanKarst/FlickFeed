@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -19,6 +18,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -30,21 +30,23 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import io.kamel.image.KamelImage
+import io.kamel.image.asyncPainterResource
+import io.ktor.http.Url
 import org.dimetracker.project.articles.Article
 import org.dimetracker.project.articles.ArticlesState
 import org.dimetracker.project.articles.ArticlesViewModel
 
 @Composable
 fun ArticlesScreen(
-    onAboutButtonClick: () -> Unit,
     articlesViewModel: ArticlesViewModel,
 ) {
-    val articlesState = articlesViewModel.articlesState.collectAsState()
+    val articlesState by articlesViewModel.articlesState.collectAsState()
 
     Column {
-        AppBar(onAboutButtonClick)
+//        AppBar(onAboutButtonClick)
 
-        when(articlesState.value) {
+        when (articlesState) {
             is ArticlesState.Loading -> Loader()
             is ArticlesState.Error -> {
                 val message = (articlesState as ArticlesState.Error).message
@@ -58,7 +60,7 @@ fun ArticlesScreen(
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun AppBar(
     onAboutButtonClick: () -> Unit,
@@ -94,9 +96,10 @@ fun ArticleItemView(article: Article) {
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-        AsyncImage(
-            model = article.imageUrl,
-            contentDescription = null
+        KamelImage(
+            { asyncPainterResource(data = Url(article.imageUrl)) },
+            contentDescription = "Article image",
+            modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
@@ -123,8 +126,7 @@ fun Loader() {
     ) {
         CircularProgressIndicator(
             modifier = Modifier.width(64.dp),
-            color = MaterialTheme.colorScheme.surfaceVariant,
-            trackColor = MaterialTheme.colorScheme.secondary,
+            color = MaterialTheme.colors.onBackground
         )
     }
 }

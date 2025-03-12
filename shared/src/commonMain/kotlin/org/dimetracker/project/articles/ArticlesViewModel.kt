@@ -20,7 +20,7 @@ class ArticlesViewModel : BaseViewModel() {
         scope.launch {
             _articlesState.emit(ArticlesState.Loading)
             try {
-                delay(500)
+                delay(1500)
 
                 val articleData = fetchArticles()
 
