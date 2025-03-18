@@ -45,7 +45,7 @@ fun ArticlesScreen(
     val articlesState by articlesViewModel.articlesState.collectAsState()
 
     Column {
-        AppBar(onAboutButtonClick)
+        AppBar("Daily Pulse", onAboutButtonClick)
 
         when (articlesState) {
             is ArticlesState.Loading -> Loader()
@@ -61,23 +61,14 @@ fun ArticlesScreen(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun AppBar(
-    onAboutButtonClick: () -> Unit,
-) {
-    TopAppBar(
-        title = { Text(text = "Articles") },
-        actions = {
-            IconButton(onClick = onAboutButtonClick) {
-                Icon(
-                    imageVector = Icons.Outlined.Info,
-                    contentDescription = "About Device Button",
-                )
-            }
-        }
-    )
-}
+expect fun AppBar(
+    title: String,
+    onAboutButtonClick: () -> Unit
+)
+
+@Composable
+expect fun Loader()
 
 @Composable
 fun ArticlesListView(articles: List<Article>) {
@@ -118,9 +109,6 @@ fun ArticleItemView(article: Article) {
         Spacer(modifier = Modifier.height(4.dp))
     }
 }
-
-@Composable
-expect fun Loader()
 
 @Composable
 fun ErrorMessage(message: String) {
