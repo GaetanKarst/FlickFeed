@@ -1,42 +1,62 @@
 package org.dimetracker.project
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Button
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.material.Scaffold
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
-
-import dailypulse.composeapp.generated.resources.Res
-import dailypulse.composeapp.generated.resources.compose_multiplatform
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import org.dimetracker.project.articles.ArticlesViewModel
 import org.dimetracker.project.screens.AboutScreen
 import org.dimetracker.project.screens.ArticlesScreen
+import org.dimetracker.project.screens.Screens
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
 fun App() {
     MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
         val articleViewModel = ArticlesViewModel()
+        val navController: NavHostController = rememberNavController()
 
-        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("Click me!")
-            }
-            AnimatedVisibility(showContent) {
-//                val greeting = remember { "hello" }
-                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    ArticlesScreen(articleViewModel)
-                }
-            }
+        Scaffold {
+            AppNavHost(
+                navController = navController,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(it),
+                articleViewModel
+            )
+        }
+    }
+}
+
+@Composable
+fun AppNavHost(
+    navController: NavHostController,
+    modifier: Modifier = Modifier,
+    articlesViewModel: ArticlesViewModel
+) {
+    NavHost(
+        navController = navController,
+        startDestination = Screens.ARTICLES.route,
+        modifier = modifier,
+    ) {
+        composable(Screens.ARTICLES.route) {
+            ArticlesScreen(
+                onAboutButtonClick = { navController.navigate(Screens.ABOUT_DEVICE.route) },
+                articlesViewModel,
+            )
+        }
+
+        composable(Screens.ABOUT_DEVICE.route) {
+            AboutScreen(
+                onUpButtonClick = { navController.popBackStack() }
+            )
         }
     }
 }

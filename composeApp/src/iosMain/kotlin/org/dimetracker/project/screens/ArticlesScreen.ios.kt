@@ -1,14 +1,17 @@
 package org.dimetracker.project.screens
 
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.interop.UIKitView
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.UIKitInteropProperties
 import androidx.compose.ui.viewinterop.UIKitView
 import kotlinx.cinterop.ExperimentalForeignApi
+import platform.CoreGraphics.CGRectMake
 import platform.UIKit.*
 
 fun Color.toUIColor(): UIColor {
@@ -22,21 +25,26 @@ fun Color.toUIColor(): UIColor {
 @OptIn(ExperimentalForeignApi::class)
 @Composable
 actual fun Loader() {
-    val indicatorColor = MaterialTheme.colors.onBackground.toUIColor() // Convert Compose color to UIColor
+    val indicatorColor = MaterialTheme.colors.onBackground.toUIColor()
 
-    UIKitView(
-        factory = {
-            UIActivityIndicatorView().apply {
-                activityIndicatorViewStyle = UIActivityIndicatorViewStyleLarge
-                color = indicatorColor
-                startAnimating()
-            }
-        },
+    Box(
         modifier = Modifier.fillMaxWidth(),
-        properties = UIKitInteropProperties(
-            isInteractive = true,
-            isNativeAccessibilityEnabled = true
+        contentAlignment = Alignment.Center // Ensure centering
+    ) {
+        UIKitView<UIActivityIndicatorView>(
+            factory = {
+                UIActivityIndicatorView().apply {
+                    activityIndicatorViewStyle = UIActivityIndicatorViewStyleLarge
+                    color = indicatorColor
+                    startAnimating()
+                }
+            },
+            modifier = Modifier.size(64.dp), // Explicit size
+            properties = UIKitInteropProperties(
+                isInteractive = true,
+                isNativeAccessibilityEnabled = true
+            )
         )
-    )
+    }
 }
 

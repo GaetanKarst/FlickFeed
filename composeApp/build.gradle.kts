@@ -49,6 +49,7 @@ kotlin {
             implementation(projects.shared)
             implementation(compose.material3)
             implementation(libs.ui)
+            implementation(libs.navigation.compose)
         }
     }
 }
@@ -82,6 +83,7 @@ android {
 
 dependencies {
     implementation(libs.androidx.material3.android)
+    implementation(libs.androidx.foundation.layout.android)
 //    implementation(project(":composeApp"))
     debugImplementation(compose.uiTooling)
 }

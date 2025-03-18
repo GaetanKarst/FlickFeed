@@ -39,12 +39,13 @@ import org.dimetracker.project.articles.ArticlesViewModel
 
 @Composable
 fun ArticlesScreen(
+    onAboutButtonClick: () -> Unit,
     articlesViewModel: ArticlesViewModel,
 ) {
     val articlesState by articlesViewModel.articlesState.collectAsState()
 
     Column {
-//        AppBar(onAboutButtonClick)
+        AppBar(onAboutButtonClick)
 
         when (articlesState) {
             is ArticlesState.Loading -> Loader()
