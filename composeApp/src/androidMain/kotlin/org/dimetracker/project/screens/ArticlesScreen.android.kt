@@ -4,7 +4,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,4 +27,22 @@ actual fun Loader() {
             color = MaterialTheme.colors.onBackground
         )
     }
+}
+
+@Composable
+actual fun AppBar(
+    title: String,
+    onAboutButtonClick: () -> Unit
+) {
+    TopAppBar(
+        title = { Text(text = title) },
+        actions = {
+            IconButton(onClick = onAboutButtonClick) {
+                Icon(
+                    imageVector = Icons.Outlined.Info,
+                    contentDescription = "About Button"
+                )
+            }
+        }
+    )
 }
