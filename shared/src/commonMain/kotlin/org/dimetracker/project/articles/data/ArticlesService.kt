@@ -5,7 +5,7 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 
 class ArticlesService(private val httpClient: HttpClient) {
-    private val COUNTRY = "jp"
+    private val COUNTRY = "us"
     private val CATEGORY = "technology"
     private val TESTAPIKEY = "1bd3a6ab52664ea995a196be83aea9ca"
 
