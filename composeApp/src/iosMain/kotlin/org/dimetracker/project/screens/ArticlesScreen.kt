@@ -104,7 +104,7 @@ actual fun AppBar(title: String, onAboutButtonClick: () -> Unit) {
             }
             return@UIKitView rootView
         },
-        modifier = Modifier.fillMaxWidth().height(56.dp) // Ensures it has height
+        modifier = Modifier.fillMaxWidth().height(56.dp)
     )
 }
 

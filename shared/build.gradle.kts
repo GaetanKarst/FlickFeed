@@ -24,6 +24,11 @@ kotlin {
         commonMain.dependencies {
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")
             implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.ktor.server.core)
+            implementation(libs.kotlinx.coroutine.core)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
         }
 
 
