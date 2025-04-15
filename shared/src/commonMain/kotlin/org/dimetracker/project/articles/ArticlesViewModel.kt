@@ -12,26 +12,15 @@ import org.dimetracker.project.BaseViewModel
 import org.dimetracker.project.articles.data.ArticlesService
 import org.dimetracker.project.articles.data.ArticlesUseCase
 
-class ArticlesViewModel : BaseViewModel() {
+class ArticlesViewModel(
+    private val useCase: ArticlesUseCase
+) : BaseViewModel() {
     private val _articlesState: MutableStateFlow<ArticlesState> =
         MutableStateFlow(ArticlesState.Loading)
-
     val articlesState: StateFlow<ArticlesState> get() = _articlesState
-    private val useCase: ArticlesUseCase
 
     init {
-        val httpClient = HttpClient {
-            install(ContentNegotiation) {
-                json(Json {
-                    prettyPrint = true
-                    isLenient = true
-                    ignoreUnknownKeys = true
-                })
-            }
-        }
 
-        val service = ArticlesService(httpClient)
-        useCase = ArticlesUseCase(service)
         getArticles()
     }
 

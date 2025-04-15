@@ -83,7 +83,7 @@ private fun RowView(
         )
         Text(
             text = subtitle,
-            style = MaterialTheme.typography.h1,
+            style = MaterialTheme.typography.h2,
         )
     }
     Divider()

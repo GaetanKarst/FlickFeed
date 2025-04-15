@@ -62,7 +62,7 @@ fun ArticlesScreen(
 }
 
 @Composable
-expect fun AppBar(
+expect fun AppBar (
     title: String,
     onAboutButtonClick: () -> Unit
 )
