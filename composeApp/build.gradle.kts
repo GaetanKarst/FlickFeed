@@ -28,10 +28,11 @@ kotlin {
     }
     
     sourceSets {
-        
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.koin.android)
+            implementation(libs.koin.androidx.compose)
         }
         iosMain.dependencies {
         }
@@ -50,6 +51,9 @@ kotlin {
             implementation(compose.material3)
             implementation(libs.ui)
             implementation(libs.navigation.compose)
+            implementation(libs.koin.core)
+            implementation(libs.koin.test)
+            implementation(libs.koin.compose)
         }
     }
 }

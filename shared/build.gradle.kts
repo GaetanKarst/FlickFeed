@@ -31,13 +31,12 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.koin.core)
             implementation(libs.koin.test)
-            implementation(libs.koin.androidx.compose)
-            implementation(libs.koin.android)
         }
-
 
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
+            implementation(libs.koin.androidx.compose)
+            implementation(libs.koin.android)
         }
 
         iosMain.dependencies {
