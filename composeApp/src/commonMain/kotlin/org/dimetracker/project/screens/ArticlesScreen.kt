@@ -36,11 +36,12 @@ import io.ktor.http.Url
 import org.dimetracker.project.articles.Article
 import org.dimetracker.project.articles.ArticlesState
 import org.dimetracker.project.articles.ArticlesViewModel
+import org.koin.compose.koinInject
 
 @Composable
 fun ArticlesScreen(
     onAboutButtonClick: () -> Unit,
-    articlesViewModel: ArticlesViewModel,
+    articlesViewModel: ArticlesViewModel = koinInject(),
 ) {
     val articlesState by articlesViewModel.articlesState.collectAsState()
 

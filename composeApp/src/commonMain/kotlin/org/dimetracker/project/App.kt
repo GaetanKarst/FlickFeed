@@ -24,7 +24,6 @@ import org.koin.core.context.startKoin
 @Preview
 fun App() {
     MaterialTheme {
-        val articleViewModel: ArticlesViewModel = koinInject()
         val navController: NavHostController = rememberNavController()
 
         Scaffold {
@@ -32,8 +31,7 @@ fun App() {
                 navController = navController,
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(it),
-                articleViewModel
+                    .padding(it)
             )
         }
     }
@@ -42,8 +40,7 @@ fun App() {
 @Composable
 fun AppNavHost(
     navController: NavHostController,
-    modifier: Modifier = Modifier,
-    articlesViewModel: ArticlesViewModel
+    modifier: Modifier = Modifier
 ) {
     NavHost(
         navController = navController,
@@ -52,8 +49,7 @@ fun AppNavHost(
     ) {
         composable(Screens.ARTICLES.route) {
             ArticlesScreen(
-                onAboutButtonClick = { navController.navigate(Screens.ABOUT_DEVICE.route) },
-                articlesViewModel,
+                onAboutButtonClick = { navController.navigate(Screens.ABOUT_DEVICE.route) }
             )
         }
 
@@ -62,13 +58,5 @@ fun AppNavHost(
                 onUpButtonClick = { navController.popBackStack() }
             )
         }
-    }
-}
-
-fun initKoin() {
-    val module = sharedModule + viewModelModule
-
-    startKoin {
-        modules(module)
     }
 }
