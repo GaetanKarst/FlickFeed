@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.sqlDelight)
     kotlin("plugin.serialization") version "1.9.20"
 }
 
@@ -31,16 +32,19 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.koin.core)
             implementation(libs.koin.test)
+            implementation(libs.sql.coroutines.extensions)
         }
 
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
             implementation(libs.koin.androidx.compose)
             implementation(libs.koin.android)
+            implementation(libs.sql.android.driver)
         }
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+            implementation(libs.sql.native.driver)
         }
 
         jvmMain.dependencies {
@@ -58,5 +62,13 @@ android {
     }
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
+    }
+}
+
+sqldelight {
+    databases {
+        create(name = "DailyPulseDatabase") {
+            packageName.set("gaetan.karst.dailypulse.db")
+        }
     }
 }
