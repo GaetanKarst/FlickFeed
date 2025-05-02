@@ -6,6 +6,7 @@ import org.dimetracker.project.database.DatabaseDriverFactory
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
+// Database dependency graph is different for android and IOS due to android context being needed in android
 val databaseModule = module {
 
     single<SqlDriver> { DatabaseDriverFactory(androidContext()).createDriver() }
