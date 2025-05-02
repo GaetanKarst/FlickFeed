@@ -5,7 +5,7 @@ import org.dimetracker.project.articles.data.ArticleRaw
 
 class ArticlesDatasource(private val database: DailyPulseDatabase) {
     fun getAllArticles(): List<ArticleRaw> {
-        return database.sqlQueries.selectAllArticles(::mapToArticleRaw).executeAsList()
+        return database.dailyPulseDatabaseQueries.selectAllArticles(::mapToArticleRaw).executeAsList()
     }
 
     private fun mapToArticleRaw(
@@ -23,7 +23,7 @@ class ArticlesDatasource(private val database: DailyPulseDatabase) {
     }
 
     fun insertArticles(articles: List<ArticleRaw>) {
-        database.sqlQueries.transaction {
+        database.dailyPulseDatabaseQueries.transaction {
             articles.forEach { articleRaw ->
                 insertArticle(articleRaw)
             }
@@ -31,7 +31,7 @@ class ArticlesDatasource(private val database: DailyPulseDatabase) {
     }
 
     private fun insertArticle(articleRaw: ArticleRaw) {
-        database.sqlQueries.insertArticle(
+        database.dailyPulseDatabaseQueries.insertArticle(
             articleRaw.title,
             articleRaw.description,
             articleRaw.date,
@@ -40,6 +40,6 @@ class ArticlesDatasource(private val database: DailyPulseDatabase) {
     }
 
     fun deleteArticles() {
-        database.sqlQueries.removeAllArticles()
+        database.dailyPulseDatabaseQueries.removeAllArticles()
     }
 }

@@ -83,6 +83,13 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    buildFeatures {
+        compose = true
+        // disable unnecessary features if not used
+        viewBinding = false
+        dataBinding = false
+    }
 }
 
 dependencies {

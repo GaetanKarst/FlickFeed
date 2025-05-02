@@ -1,5 +1,7 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -21,17 +23,16 @@ kotlin {
     iosSimulatorArm64()
 
     jvm()
-    
+
     sourceSets {
         commonMain.dependencies {
-//            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.coroutines.core)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.kotlinx.datetime)
             implementation(libs.koin.core)
-            implementation(libs.koin.test)
             implementation(libs.sql.coroutines.extensions)
         }
 
@@ -48,10 +49,10 @@ kotlin {
         }
 
         jvmMain.dependencies {
-
         }
     }
 }
+
 
 android {
     namespace = "org.dimetracker.project.shared"
