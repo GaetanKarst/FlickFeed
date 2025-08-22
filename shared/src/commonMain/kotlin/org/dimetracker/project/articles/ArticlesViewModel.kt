@@ -17,10 +17,10 @@ class ArticlesViewModel(
         getArticles()
     }
 
-    private fun getArticles() {
+    fun getArticles(forcedRefresh: Boolean = false) {
         scope.launch {
             try {
-                val articleData = useCase.getArticles();
+                val articleData = useCase.getArticles(forcedRefresh);
                 _articlesState.emit(ArticlesState.Success(articleData))
             } catch (e: Exception) {
                 _articlesState.emit(ArticlesState.Error("Failed to load articles"))

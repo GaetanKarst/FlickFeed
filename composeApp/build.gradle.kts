@@ -97,5 +97,8 @@ dependencies {
     implementation(libs.androidx.foundation.layout.android)
 //    implementation(project(":composeApp"))
     debugImplementation(compose.uiTooling)
+    implementation(libs.material)
+    implementation(libs.androidx.foundation)
+    implementation(libs.androidx.material.pullrefresh)
 }
 
