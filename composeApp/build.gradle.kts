@@ -60,12 +60,12 @@ kotlin {
 
 android {
     namespace = "org.dimetracker.project"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "org.dimetracker.project"
         minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
     }
@@ -99,6 +99,5 @@ dependencies {
     debugImplementation(compose.uiTooling)
     implementation(libs.material)
     implementation(libs.androidx.foundation)
-    implementation(libs.androidx.material.pullrefresh)
 }
 
