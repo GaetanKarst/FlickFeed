@@ -1,6 +1,7 @@
 # FlickFeed
 
 FlickFeed is a Kotlin Multiplatform MVP project designed to deliver a seamless article consumption experience across Android, iOS, and a supporting Ktor server backend. It leverages the power of Kotlin to share business logic and UI components (via Compose Multiplatform) across different platforms.
+
 ⚠️This MVP project was made to learn the new Kotlin Multiplatform framework and its limitations.
 
 The challenge during this project was to make a cross platform mobile app only using Kotlin.
