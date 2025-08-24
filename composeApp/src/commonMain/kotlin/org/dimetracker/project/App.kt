@@ -10,15 +10,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import org.dimetracker.project.articles.ArticlesViewModel
-import org.dimetracker.project.config.dependencyInjection.sharedModule
-import org.dimetracker.project.config.dependencyInjection.viewModelModule
 import org.dimetracker.project.screens.AboutScreen
 import org.dimetracker.project.screens.ArticlesScreen
 import org.dimetracker.project.screens.Screens
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.koin.compose.koinInject
-import org.koin.core.context.startKoin
 
 @Composable
 @Preview

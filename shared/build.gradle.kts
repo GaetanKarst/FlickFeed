@@ -68,7 +68,7 @@ android {
 
 sqldelight {
     databases {
-        create(name = "DailyPulseDatabase") {
+        create(name = "FlickFeedDatabase") {
             packageName.set("gaetan.karst.dailypulse.db")
         }
     }

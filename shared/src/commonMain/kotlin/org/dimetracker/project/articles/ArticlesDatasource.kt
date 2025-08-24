@@ -1,11 +1,11 @@
 package org.dimetracker.project.articles
 
-import gaetan.karst.dailypulse.db.DailyPulseDatabase
+import gaetan.karst.dailypulse.db.FlickFeedDatabase
 import org.dimetracker.project.articles.data.ArticleRaw
 
-class ArticlesDatasource(private val database: DailyPulseDatabase) {
+class ArticlesDatasource(private val database: FlickFeedDatabase) {
     fun getAllArticles(): List<ArticleRaw> {
-        return database.dailyPulseDatabaseQueries.selectAllArticles(::mapToArticleRaw).executeAsList()
+        return database.flickFeedDatabaseQueries.selectAllArticles(::mapToArticleRaw).executeAsList()
     }
 
     private fun mapToArticleRaw(
@@ -23,7 +23,7 @@ class ArticlesDatasource(private val database: DailyPulseDatabase) {
     }
 
     fun insertArticles(articles: List<ArticleRaw>) {
-        database.dailyPulseDatabaseQueries.transaction {
+        database.flickFeedDatabaseQueries.transaction {
             articles.forEach { articleRaw ->
                 insertArticle(articleRaw)
             }
@@ -31,7 +31,7 @@ class ArticlesDatasource(private val database: DailyPulseDatabase) {
     }
 
     private fun insertArticle(articleRaw: ArticleRaw) {
-        database.dailyPulseDatabaseQueries.insertArticle(
+        database.flickFeedDatabaseQueries.insertArticle(
             articleRaw.title,
             articleRaw.description,
             articleRaw.date,
@@ -40,6 +40,6 @@ class ArticlesDatasource(private val database: DailyPulseDatabase) {
     }
 
     fun deleteArticles() {
-        database.dailyPulseDatabaseQueries.removeAllArticles()
+        database.flickFeedDatabaseQueries.removeAllArticles()
     }
 }

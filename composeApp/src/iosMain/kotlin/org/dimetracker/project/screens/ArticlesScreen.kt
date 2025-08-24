@@ -25,7 +25,6 @@ import platform.UIKit.UINavigationBar
 import platform.UIKit.UINavigationItem
 import platform.UIKit.UINavigationItemLargeTitleDisplayMode
 import platform.UIKit.UIView
-import platform.UIKit.UIViewController
 import platform.UIKit.labelColor
 import platform.UIKit.systemBackgroundColor
 import platform.darwin.NSObject

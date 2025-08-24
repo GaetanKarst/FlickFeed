@@ -7,28 +7,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -53,7 +41,7 @@ fun ArticlesScreen(
     val articlesState by articlesViewModel.articlesState.collectAsState()
 
     Column {
-        AppBar("Daily Pulse", onAboutButtonClick)
+        AppBar("FlickFeed", onAboutButtonClick)
 
         when (articlesState) {
             is ArticlesState.Loading -> Loader()
@@ -61,6 +49,7 @@ fun ArticlesScreen(
                 val message = (articlesState as ArticlesState.Error).message
                 ErrorMessage(message)
             }
+
             is ArticlesState.Success -> {
                 val articles = (articlesState as ArticlesState.Success).articles
                 ArticlesListView(
@@ -75,7 +64,7 @@ fun ArticlesScreen(
 
 
 @Composable
-expect fun AppBar (
+expect fun AppBar(
     title: String,
     onAboutButtonClick: () -> Unit
 )
@@ -95,9 +84,11 @@ fun ArticlesListView(
         onRefresh = onRefresh
     )
 
-    Box(Modifier
-        .fillMaxSize()
-        .pullRefresh(pullRefreshState)) {
+    Box(
+        Modifier
+            .fillMaxSize()
+            .pullRefresh(pullRefreshState)
+    ) {
 
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(articles) { article ->

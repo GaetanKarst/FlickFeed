@@ -1,5 +1,6 @@
 package org.dimetracker.project.articles
 
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -20,6 +21,7 @@ class ArticlesViewModel(
     fun getArticles(forcedRefresh: Boolean = false) {
         scope.launch {
             try {
+                _articlesState.emit(ArticlesState.Loading)
                 val articleData = useCase.getArticles(forcedRefresh);
                 _articlesState.emit(ArticlesState.Success(articleData))
             } catch (e: Exception) {

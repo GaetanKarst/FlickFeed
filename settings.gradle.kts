@@ -1,4 +1,4 @@
-rootProject.name = "DailyPulse"
+rootProject.name = "FlickFeed"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
