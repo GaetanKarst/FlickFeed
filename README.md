@@ -5,8 +5,8 @@ FlickFeed is a Kotlin Multiplatform MVP project designed to deliver a seamless a
 
 The challenge during this project was to make a cross platform mobile app only using Kotlin.
 
-![Main articles feed screen](./assets/main_screen.png)
-![Source selection screen](./assets/sources_screen.png)
+<img src="./assets/main_screen.png" alt="Main articles feed screen" width="600"/>
+<img src="./assets/sources_screen.png" alt="Source selection screen" width="600"/>
 
 ## Project Structure
 
