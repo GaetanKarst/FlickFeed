@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import org.dimetracker.project.screens.AboutScreen
 import org.dimetracker.project.screens.ArticlesScreen
 import org.dimetracker.project.screens.Screens
+import org.dimetracker.project.screens.SourcesScreen
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -44,12 +45,20 @@ fun AppNavHost(
     ) {
         composable(Screens.ARTICLES.route) {
             ArticlesScreen(
-                onAboutButtonClick = { navController.navigate(Screens.ABOUT_DEVICE.route) }
+                onAboutButtonClick = { navController.navigate(Screens.ABOUT_DEVICE.route) },
+                onSourcesButtonClick = {
+                    navController.navigate(Screens.SOURCES.route)
+                }
             )
         }
 
         composable(Screens.ABOUT_DEVICE.route) {
             AboutScreen(
+                onUpButtonClick = { navController.popBackStack() }
+            )
+        }
+        composable(Screens.SOURCES.route) {
+            SourcesScreen(
                 onUpButtonClick = { navController.popBackStack() }
             )
         }

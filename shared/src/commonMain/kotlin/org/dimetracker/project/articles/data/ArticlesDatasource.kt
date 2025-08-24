@@ -1,7 +1,6 @@
-package org.dimetracker.project.articles
+package org.dimetracker.project.articles.data
 
 import gaetan.karst.dailypulse.db.FlickFeedDatabase
-import org.dimetracker.project.articles.data.ArticleRaw
 
 class ArticlesDatasource(private val database: FlickFeedDatabase) {
     fun getAllArticles(): List<ArticleRaw> {

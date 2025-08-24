@@ -14,3 +14,24 @@ SELECT Article.* FROM Article;
 
 removeAllArticles:
 DELETE FROM Article;
+
+CREATE TABLE Source (
+    id TEXT NOT NULL,
+    name TEXT NOT NULL,
+    description TEXT NOT NULL,
+    url TEXT,
+    country TEXT NOT NULL,
+    category TEXT NOT NULL,
+    language TEXT NOT NULL
+);
+
+insertSource:
+INSERT INTO Source(id, name, description, url, country, category, language)
+VALUES(?, ?, ?, ?, ?, ?, ?);
+
+selectAllSources:
+SELECT Source.*
+FROM Source;
+
+removeAllSources:
+DELETE FROM Source;

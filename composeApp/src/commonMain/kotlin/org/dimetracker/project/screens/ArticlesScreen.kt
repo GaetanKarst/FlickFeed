@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.sp
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 import io.ktor.http.Url
-import org.dimetracker.project.articles.Article
+import org.dimetracker.project.articles.data.Article
 import org.dimetracker.project.articles.ArticlesState
 import org.dimetracker.project.articles.ArticlesViewModel
 import org.koin.compose.koinInject
@@ -36,12 +36,13 @@ import org.koin.compose.koinInject
 @Composable
 fun ArticlesScreen(
     onAboutButtonClick: () -> Unit,
+    onSourcesButtonClick: () -> Unit,
     articlesViewModel: ArticlesViewModel = koinInject(),
 ) {
     val articlesState by articlesViewModel.articlesState.collectAsState()
 
     Column {
-        AppBar("FlickFeed", onAboutButtonClick)
+        AppBar("FlickFeed", onAboutButtonClick, onSourcesButtonClick)
 
         when (articlesState) {
             is ArticlesState.Loading -> Loader()
@@ -66,7 +67,8 @@ fun ArticlesScreen(
 @Composable
 expect fun AppBar(
     title: String,
-    onAboutButtonClick: () -> Unit
+    onAboutButtonClick: () -> Unit,
+    onSourcesButtonClick: () -> Unit
 )
 
 @Composable

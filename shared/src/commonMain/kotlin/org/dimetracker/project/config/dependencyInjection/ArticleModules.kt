@@ -1,7 +1,7 @@
 package org.dimetracker.project.config.dependencyInjection
 
-import org.dimetracker.project.articles.ArticlesDatasource
-import org.dimetracker.project.articles.ArticlesRepository
+import org.dimetracker.project.articles.data.ArticlesDatasource
+import org.dimetracker.project.articles.data.ArticlesRepository
 import org.dimetracker.project.articles.ArticlesViewModel
 import org.dimetracker.project.articles.data.ArticlesService
 import org.dimetracker.project.articles.data.ArticlesUseCase

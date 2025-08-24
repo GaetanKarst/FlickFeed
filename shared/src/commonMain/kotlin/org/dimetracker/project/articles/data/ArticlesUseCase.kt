@@ -6,8 +6,8 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.daysUntil
 import kotlinx.datetime.toLocalDateTime
 import kotlinx.datetime.todayIn
-import org.dimetracker.project.articles.Article
-import org.dimetracker.project.articles.ArticlesRepository
+import org.dimetracker.project.articles.data.Article
+import org.dimetracker.project.articles.data.ArticlesRepository
 import kotlin.math.abs
 
 class ArticlesUseCase(private val repo: ArticlesRepository) {

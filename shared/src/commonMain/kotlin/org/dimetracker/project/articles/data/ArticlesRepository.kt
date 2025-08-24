@@ -1,7 +1,4 @@
-package org.dimetracker.project.articles
-
-import org.dimetracker.project.articles.data.ArticleRaw
-import org.dimetracker.project.articles.data.ArticlesService
+package org.dimetracker.project.articles.data
 
 class ArticlesRepository(
     private val datasource: ArticlesDatasource,

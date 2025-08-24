@@ -21,6 +21,7 @@ import platform.UIKit.UIActivityIndicatorViewStyleLarge
 import platform.UIKit.UIBarButtonItem
 import platform.UIKit.UIBarButtonItemStyle
 import platform.UIKit.UIColor
+import platform.UIKit.UIImage // Import UIImage
 import platform.UIKit.UINavigationBar
 import platform.UIKit.UINavigationItem
 import platform.UIKit.UINavigationItemLargeTitleDisplayMode
@@ -65,10 +66,11 @@ actual fun Loader() {
 
 @OptIn(ExperimentalForeignApi::class)
 @Composable
-actual fun AppBar(title: String, onAboutButtonClick: () -> Unit) {
+actual fun AppBar(title: String, onAboutButtonClick: () -> Unit, onSourcesButtonClick: () -> Unit) {
     UIKitView(
         factory = {
-            val viewController = AboutButtonHandler(onAboutButtonClick)
+            val aboutButtonHandler = AboutButtonHandler(onAboutButtonClick)
+            val sourcesButtonHandler = SourcesButtonHandler(onSourcesButtonClick)
             val navigationBar = UINavigationBar().apply {
                 translatesAutoresizingMaskIntoConstraints = false
                 barTintColor = UIColor.systemBackgroundColor
@@ -78,12 +80,22 @@ actual fun AppBar(title: String, onAboutButtonClick: () -> Unit) {
                     largeTitleDisplayMode =
                         UINavigationItemLargeTitleDisplayMode.UINavigationItemLargeTitleDisplayModeAlways
 
-                    rightBarButtonItem = UIBarButtonItem(
+                    val aboutBarButtonItem = UIBarButtonItem(
                         title = "About",
                         style = UIBarButtonItemStyle.UIBarButtonItemStylePlain,
-                        target = viewController,
+                        target = aboutButtonHandler,
                         action = NSSelectorFromString("aboutButtonTapped")
                     )
+
+                    // Use system image for the sources button
+                    val sourcesBarButtonItem = UIBarButtonItem(
+                        image = UIImage.systemImageNamed("list.bullet"),
+                        style = UIBarButtonItemStyle.UIBarButtonItemStylePlain,
+                        target = sourcesButtonHandler,
+                        action = NSSelectorFromString("sourcesButtonTapped")
+                    )
+                    
+                    rightBarButtonItems = listOf(aboutBarButtonItem, sourcesBarButtonItem)
                 }
 
                 setItems(listOf(navigationItem), false)
@@ -111,6 +123,14 @@ class AboutButtonHandler(private val onClick: () -> Unit) : NSObject() {
     @OptIn(BetaInteropApi::class)
     @ObjCAction
     fun aboutButtonTapped() {
+        onClick()
+    }
+}
+
+class SourcesButtonHandler(private val onClick: () -> Unit) : NSObject() {
+    @OptIn(BetaInteropApi::class)
+    @ObjCAction
+    fun sourcesButtonTapped() {
         onClick()
     }
 }
