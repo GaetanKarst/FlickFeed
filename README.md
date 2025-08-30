@@ -1,6 +1,6 @@
-# FlickFeed
+# FlickFeed 📰
 
-FlickFeed is a Kotlin Multiplatform MVP project designed to deliver a seamless article consumption experience across Android, iOS, and a supporting Ktor server backend. It leverages the power of Kotlin to share business logic and UI components (via Compose Multiplatform) across different platforms.
+FlickFeed is a Kotlin Multiplatform MVP project designed to deliver a seamless article consumption experience across Android, iOS. It leverages the power of Kotlin to share business logic and UI components (via Compose Multiplatform) across different platforms.
 
 ⚠️This MVP project was made to learn the new Kotlin Multiplatform framework and its limitations.
 
@@ -29,7 +29,6 @@ This repository is organized into the following key modules:
 
 *   **Kotlin Multiplatform:** For sharing code across IOS and Android.
 *   **Jetpack Compose for Multiplatform:** For building the user interface.
-*   **Ktor:** For the backend server.
 *   **SQLDelight:** For local database storage on client platforms.
 *   **Koin:** For dependency injection.
 
